@@ -1,0 +1,114 @@
+<AdicionarVendasPage>: #informar o mesmo nome da classe entre <>
+    FloatLayout:
+        canvas: 
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+            pos_hint: {"right": 1, "top":1}
+            size_hint: 1, 0.05
+            text: "Selecione o cliente"
+            id: label_selecione_cliente
+        
+        #Lista de Clientes
+        ScrollView: 
+            pos_hint: {"right": 1, "top":0.95}
+            size_hint: 1, 0.125
+            GridLayout:
+                rows: 1 #scroll horizontal
+                id: lista_clientes
+                size_hint_x: None #parametro obrigatório para utilizar o ScrollView, obs: _x para scroll horizontal.
+                width: self.minimum_width #parametro obrigatório para utilizar o ScrollView, obs: _width para scroll horizontal
+                col_default_width: "100dp" #parametro obrigatório para utilizar o ScrollView, obs: _col para scroll horizontal.
+                col_force_default: True #parametro obrigatório para utilizar o ScrollView, obs: _col para scroll horizontal.            
+        Label:
+            pos_hint: {"right": 1, "top":0.75}
+            size_hint: 1, 0.05
+            text: "Selecione o Produto"
+            id: label_selecione_produto
+
+        
+        #Lista de Produtos
+        ScrollView: 
+            pos_hint: {"right": 1, "top":0.7}
+            size_hint: 1, 0.125
+            GridLayout:
+                rows: 1 #scroll horizontal
+                id: lista_produtos
+                size_hint_x: None #parametro obrigatório para utilizar o ScrollView, obs: _x para scroll horizontal.
+                width: self.minimum_width #parametro obrigatório para utilizar o ScrollView
+                col_default_width: "100dp" #parametro obrigatório para utilizar o ScrollView, obs: _col para scroll horizontal.
+                col_force_default: True #parametro obrigatório para utilizar o ScrollView, obs: _col para scroll horizontal.       
+        #Info Data
+        Label:
+            pos_hint: {"right": 1, "top":0.5}
+            size_hint: 1, 0.1
+            bold: True
+            id: label_data
+            text: "Data: 01/01/2024"
+        
+        #Botoes
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png" #para sinalizar que o botão foi selecionado
+            on_release: app.mudar_tela("homepage")
+            text: "Cancelar"
+            pos_hint: {"right": 0.45, "top": 0.2}
+            size_hint: 0.4, 0.15
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png" #para sinalizar que o botão foi selecionado
+            on_release: app.adicionar_venda()
+            text: "Adicionar Venda"
+            pos_hint: {"right": 0.95, "top": 0.2}
+            size_hint: 0.4, 0.15        
+        
+        #Selecione a unidade
+        GridLayout
+            rows: 1
+            pos_hint: {"right": 0.9, "top":0.45}
+            size_hint: 0.8, 0.1
+            LabelButton:
+                text: "kg"
+                id: unidades_kg
+                on_release: app.selecionar_unidade("unidades_kg")
+            LabelButton:
+                text: "unidades"
+                id: unidades_unidades
+                on_release: app.selecionar_unidade("unidades_unidades")
+            LabelButton:
+                text: "litros"
+                id: unidades_litros
+                on_release: app.selecionar_unidade("unidades_litros")
+        
+        #Preço Total
+        GridLayout
+            rows: 1
+            pos_hint: {"right": 0.9, "top":0.355}
+            size_hint: 0.8, 0.075
+            Label:
+                text: "Preço Total (R$)"
+                id: label_preco
+            TextInput:
+                id: preco_total
+                hint_text: "Digite apenas números"
+        
+        #Quantidade
+        GridLayout
+            rows: 1
+            pos_hint: {"right": 0.9, "top":0.275}
+            size_hint: 0.8, 0.075
+            Label:
+                text: "Quantidade Total"
+                id: label_quantidade
+            TextInput:
+                id: quantidade
+                hint_text: "0"            
+

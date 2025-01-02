@@ -1,0 +1,68 @@
+#: include kv/homepage.kv
+#: include kv/ajustespage.kv
+#: include kv/adicionarvendaspage.kv
+#: include kv/adicionarvendedorpage.kv
+#: include kv/fotoperfilpage.kv
+#: include kv/listarvendedorespage.kv
+#: include kv/todasvendaspage.kv
+#: include kv/loginpage.kv
+#: include kv/vendasoutrovendedorpage.kv
+
+
+#: import utils kivy.utils 
+
+#GridLayout: É a forma mais "fácil" de criar a tela.
+#	rows: 1
+#	cols: 1
+#	ScreenManager: #É o gerenciador de telas do app
+#		id: screen_manager
+#		HomePage: #Aqui será a ordem de apresentação das telas do app
+#			name: "homepage"
+#			id: homepage
+#		AjustesPage:
+#			name: "ajustespage"
+#			id: ajustespage
+
+FloatLayout:
+	canvas: 
+		Color:
+			rgb: utils.get_color_from_hex("#001824")
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	Image:
+		pos_hint: {"right":1, "top":0.9} # é a posição da imagem na tela começando pelo "topo", 1=100%
+		size_hint: 1, 0.2 # é o tamanho da imagem
+		source: "icones/hash.png" #caminho da imagem
+		id: foto_perfil
+	ScreenManager: #É o gerenciador de telas do app
+		pos_hint: {"right":1, "top":0.7}
+		size_hint: 1, 0.7
+		id: screen_manager
+		LoginPage: # Aqui será conforme a ordem de apresentação no app, a class da tela de Login deve ser a primeira da lista
+			name: "loginpage"
+			id: loginpage
+		HomePage: 
+			name: "homepage"
+			id: homepage
+		AjustesPage:
+			name: "ajustespage"
+			id: ajustespage
+		AdicionarVendasPage:
+			name: "adicionarvendaspage"
+			id: adicionarvendaspage
+		AdicionarVendedorPage:
+			name: "adicionarvendedorpage"
+			id: adicionarvendedorpage
+		FotoPerfilPage:
+			name: "fotoperfilpage"
+			id: fotoperfilpage
+		ListarVendedoresPage:
+			name: "listarvendedorespage"
+			id: listarvendedorespage
+		TodasVendasPage:
+			name: "todasvendaspage"
+			id: todasvendaspage
+		VendasOutroVendedorPage:
+			name: "vendasoutrovendedorpage"
+			id: vendasoutrovendedorpage
