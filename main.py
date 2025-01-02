@@ -9,10 +9,13 @@ from botoes import *
 import requests
 from bannervenda import BannerVenda
 import os
+import certifi #certificado de segurança para o requests no Kivy https
 from functools import partial #Permite passar um parametro para uma função que está sendo utilizada para o botão, será utilizado na função de seleção de foto de perfil
 from myfirebase import MyFirebase
 from bannervendedor import BannerVendedor
 from datetime import date
+
+os. environ["SSL_CERT_FILE"] = certifi.where() #certificado de segurança obrigatório para o requests no Kivy https
 
 GUI = Builder.load_file("main.kv")
 
